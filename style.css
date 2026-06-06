@@ -68,7 +68,7 @@ button:hover {
     background-color: rgba(255, 255, 255, 0.4);
     padding: 15px;
     border-radius: 10px;
-    width: 2000px;
+    width: 200px;
 }
 
 /* Make the ingredient look clickable */
@@ -114,6 +114,12 @@ button:hover {
     transform: scale(1.1);
 }
 
+/* Tomato styling */
+#ingredient-tomato {
+    width: 70px;
+    cursor: pointer;
+}
+
 /* NEW: We will add this class via JavaScript ONLY when dropped! */
 .on-stove {
     position: absolute;
@@ -129,4 +135,12 @@ button:hover {
     z-index: 10;
     top: 20%;
     left: 30%;
+}
+
+#prep-zone img {
+    width: 80px;
+    cursor: pointer;
+    height: 80px;
+    position: relative;
+    flex: auto
 }

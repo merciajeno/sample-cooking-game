@@ -5,7 +5,8 @@ const startScreen = document.getElementById('start-screen');
 const gameScreen = document.getElementById('game-screen');
 const playButton = document.getElementById('play-button');
 const backButton = document.getElementById('back-button');
-const raw_egg = document.getElementById('ingredient-egg');
+const egg = document.getElementById('ingredient-egg');
+const tomato = document.getElementById('ingredient-tomato');
 const stove = document.getElementById('stove');
 const plate = document.getElementById('plate');
 const stoveContainer = document.getElementById('stove-container');
@@ -26,10 +27,12 @@ backButton.addEventListener('click', () => {
 });
 
 
-raw_egg.addEventListener('dragstart', (e) => {
+function onDragStart(e) {
+    e.dataTransfer.setData('text/plain', e.target.id);
+}
 
-    console.log('Started dragging the egg!');
-});
+egg.addEventListener('dragstart', onDragStart);
+tomato.addEventListener('dragstart', onDragStart);
 
 stoveContainer.addEventListener('dragover', (e) => {
     e.preventDefault();
@@ -37,32 +40,56 @@ stoveContainer.addEventListener('dragover', (e) => {
 
 stoveContainer.addEventListener('drop', (e) => {
     e.preventDefault();
+    const id = e.dataTransfer.getData('text/plain');
+    const item = document.getElementById(id);
+    if (!item) return;
 
-    raw_egg.src = '/fried-egg/cooked-egg.svg';
-    //stove.appendChild(raw_egg);
-    raw_egg.classList.add('on-stove')
-    stoveContainer.appendChild(raw_egg);
-
-    console.log('Dropped the egg on the stove!');
+    // Stove accepts only raw eggs
+    if (item.dataset.type === 'egg' && item.dataset.state === 'raw') {
+        item.src = 'fried-egg/cooked-egg.svg';
+        item.dataset.state = 'cooked';
+        item.classList.add('on-stove');
+        stoveContainer.appendChild(item);
+        console.log('Dropped the egg on the stove! It is now cooked.');
+    } else {
+        console.log('That cannot be cooked on the stove.');
+    }
 });
 plateContainer.addEventListener('dragover', (e) => {
     e.preventDefault();
 });
 plateContainer.addEventListener('drop', (e) => {
     e.preventDefault();
+    const id = e.dataTransfer.getData('text/plain');
+    const item = document.getElementById(id);
+    if (!item) return;
 
-    // Only allow the drop IF the egg is cooked
-    if (raw_egg.src.includes('cooked-egg.svg')) {
-        
-        raw_egg.classList.remove('on-stove');
-        raw_egg.classList.add('on-plate');
-        plateContainer.appendChild(raw_egg);
-        
-        console.log('Order up! Perfect egg served.');
-        
+    const type = item.dataset.type;
+    const state = item.dataset.state;
+
+    // Plate accepts only cooked eggs or sliced tomatoes
+    const canServeEgg = (type === 'egg' && state === 'cooked');
+    const canServeTomato = (type === 'tomato' && state === 'sliced');
+
+    if (canServeEgg || canServeTomato) {
+        item.classList.remove('on-stove');
+        item.classList.add('on-plate');
+        item.dataset.state = 'served';
+        plateContainer.appendChild(item);
+        console.log('Order up! Served:', type);
     } else {
-        // Optional: Let the player know they messed up!
-        console.log('You cannot serve that! It is raw or burnt!');
+        console.log('You cannot serve that! Wrong state or ingredient.');
+    }
+});
+
+// Clicking the tomato slices it (changes state and image)
+tomato.addEventListener('click', () => {
+    if (tomato.dataset.state === 'whole') {
+        tomato.src = 'fried-egg/sliced-tomato.svg';
+        tomato.dataset.state = 'sliced';
+        console.log('Tomato sliced and ready to serve.');
+    } else {
+        console.log('Tomato is already sliced.');
     }
 });
 

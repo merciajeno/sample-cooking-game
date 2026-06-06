@@ -1,0 +1,40 @@
+<svg width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ff6b6b"/>
+      <stop offset="100%" stop-color="#e94f4f"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="none" />
+
+  <!-- Three tomato slices -->
+  <g transform="translate(20,20)">
+    <ellipse cx="30" cy="30" rx="30" ry="24" fill="url(#g)" stroke="#b83b3b" stroke-width="2" />
+    <ellipse cx="30" cy="30" rx="18" ry="12" fill="#ffb3b3" opacity="0.4" />
+    <g fill="#fff3" transform="translate(22,20)">
+      <circle cx="4" cy="6" r="2" />
+      <circle cx="12" cy="8" r="2" />
+      <circle cx="6" cy="12" r="2" />
+    </g>
+  </g>
+
+  <g transform="translate(80,30) rotate(-10)">
+    <ellipse cx="30" cy="30" rx="28" ry="22" fill="url(#g)" stroke="#b83b3b" stroke-width="2" />
+    <ellipse cx="30" cy="30" rx="16" ry="10" fill="#ffb3b3" opacity="0.45" />
+    <g fill="#fff3" transform="translate(22,20)">
+      <circle cx="6" cy="6" r="2" />
+      <circle cx="14" cy="9" r="2" />
+      <circle cx="10" cy="13" r="2" />
+    </g>
+  </g>
+
+  <g transform="translate(135,20) rotate(8)">
+    <ellipse cx="30" cy="30" rx="26" ry="20" fill="url(#g)" stroke="#b83b3b" stroke-width="2" />
+    <ellipse cx="30" cy="30" rx="15" ry="9" fill="#ffb3b3" opacity="0.5" />
+    <g fill="#fff3" transform="translate(22,20)">
+      <circle cx="8" cy="6" r="2" />
+      <circle cx="12" cy="10" r="2" />
+      <circle cx="6" cy="12" r="2" />
+    </g>
+  </g>
+</svg>
