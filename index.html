@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cooking Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Main Game Window -->
+    <div id="app-container">
+
+        <!-- SCREEN 1: Start Menu -->
+        <div id="start-screen" class="screen">
+            <h1>Welcome to the Kitchen! 🍳</h1>
+            <p>Can you fry the perfect egg?</p>
+            <button id="play-button">Play</button>
+        </div>
+
+        <!-- SCREEN 2: The Game -->
+        <div id="game-screen" class="screen hidden">
+            <h2>Let's Cook!</h2>
+            <!-- The stove, pan, and egg images will go in here later -->
+
+            <div id="kitchen-counter">
+
+                <div id="prep-zone" class="zone">
+                    <h3>Ingredients</h3>
+                    <img id="ingredient-egg" src="/fried-egg/normal-egg.svg" alt="Whole Egg" class="draggable">
+                </div>
+
+                <div id="cooking-zone" class="zone">
+                    <h3>Stove</h3>
+                    <div id="stove-container">
+                        <img id="stove" src="/fried-egg/stove.svg">
+                    </div>
+                </div>
+
+                <div id="serving-zone" class="zone">
+                    <h3>Order Up!</h3>
+                    <div id="plate-container">
+                        <img id="plate" src="/fried-egg/plate.svg" alt="Empty Plate">
+                    </div>
+
+                </div>
+                <button id="back-button">Quit</button>
+            </div>
+
+        </div>
+
+        <script src="game.js"></script>
+</body>
+
+</html>
