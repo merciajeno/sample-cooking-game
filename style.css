@@ -144,3 +144,8 @@ button:hover {
     position: relative;
     flex: auto
 }
+
+.sliced-bacon {
+    width: 80px;
+    height: 80px;
+}

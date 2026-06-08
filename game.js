@@ -5,10 +5,17 @@ const startScreen = document.getElementById('start-screen');
 const gameScreen = document.getElementById('game-screen');
 const playButton = document.getElementById('play-button');
 const backButton = document.getElementById('back-button');
+
+//ingredients
 const egg = document.getElementById('ingredient-egg');
 const tomato = document.getElementById('ingredient-tomato');
+const bacon = document.getElementById('ingredient-bacon');
+
+
 const stove = document.getElementById('stove');
 const plate = document.getElementById('plate');
+
+
 const stoveContainer = document.getElementById('stove-container');
 const plateContainer = document.getElementById('plate-container');
 // 2. Add an event listener to the Play button
@@ -33,6 +40,7 @@ function onDragStart(e) {
 
 egg.addEventListener('dragstart', onDragStart);
 tomato.addEventListener('dragstart', onDragStart);
+bacon.addEventListener('dragstart', onDragStart);
 
 stoveContainer.addEventListener('dragover', (e) => {
     e.preventDefault();
@@ -70,8 +78,9 @@ plateContainer.addEventListener('drop', (e) => {
     // Plate accepts only cooked eggs or sliced tomatoes
     const canServeEgg = (type === 'egg' && state === 'cooked');
     const canServeTomato = (type === 'tomato' && state === 'sliced');
+    const canServeBacon = (type === 'bacon' && state === 'sliced');
 
-    if (canServeEgg || canServeTomato) {
+    if (canServeEgg || canServeTomato || canServeBacon) {
         item.classList.remove('on-stove');
         item.classList.add('on-plate');
         item.dataset.state = 'served';
@@ -93,3 +102,13 @@ tomato.addEventListener('click', () => {
     }
 });
 
+bacon.addEventListener('click', () => {
+    if (bacon.dataset.state === 'raw') {
+        bacon.src = 'fried-egg/sliced-bacon.svg';
+        bacon.classList.add('sliced-bacon');
+        bacon.dataset.state = 'sliced';
+        console.log('Bacon sliced and ready to serve.');
+    } else {
+        console.log('Bacon is already sliced.');
+    }
+});
